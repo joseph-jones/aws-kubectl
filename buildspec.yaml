@@ -19,5 +19,5 @@ phases:
   post_build:
     commands:
       - echo uploading image
-      - docker push $REPOSITORY_URI:$CODEBUILD_BUILD_NUMBER
       - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$CODEBUILD_BUILD_NUMBER
