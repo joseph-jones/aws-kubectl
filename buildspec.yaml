@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR
+      - aws --version
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/joseph-jones
+      - REPOSITORY_URI=public.ecr.aws/joseph-jones/aws-kubectl
+
+
+  build:
+    commands:
+      - echo build and tag
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$CODEBUILD_BUILD_NUMBER
+
+  post_build:
+    commands:
+      - echo uploading image
+      - docker push $REPOSITORY_URI:$CODEBUILD_BUILD_NUMBER
+      - docker push $REPOSITORY_URI:latest
