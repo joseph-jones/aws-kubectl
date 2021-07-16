@@ -5,9 +5,8 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR
-      - aws --version
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/joseph-jones
       - REPOSITORY_URI=public.ecr.aws/joseph-jones/aws-kubectl
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/joseph-jones
 
 
   build:
