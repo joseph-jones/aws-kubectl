@@ -12,7 +12,7 @@ FROM docker.io/debian:10-slim
 LABEL image.original.author="Mike Petersen <mike@odania-it.de>"
 LABEL image.author="Joseph Jones"
 
-ADD run.sh /usr/local/bin/run.sh
+ADD *.sh /usr/local/bin/
 COPY --from=0 /download/kubectl /usr/local/bin/kubectl
 WORKDIR /tmp/download
 COPY --from=0 /download/aws /tmp/download/aws
