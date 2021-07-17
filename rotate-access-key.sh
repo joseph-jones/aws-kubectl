@@ -11,8 +11,8 @@ trap "rm -f ${TMP_FILE}" EXIT TERM INT
 
 # remove any inactive keys
 echo "remove inactive access keys"
-INACTIVE=$(aws iam list-access-keys | jq '.AccessKeyMetadata[] | select(.Status != "Active") | .AccessKeyId')
-if [[ "x${INACTIVE:-}" -ne 'x' ]]; then
+INACTIVE=$(aws iam list-access-keys | jq -r '.AccessKeyMetadata[] | select(.Status != "Active") | .AccessKeyId')
+if [[ -n ${INACTIVE:-}  ]]; then
     aws iam delete-access-key --access-key-id $INACTIVE
 fi
 
