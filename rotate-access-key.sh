@@ -37,7 +37,7 @@ echo "Removing previous secret"
 kubectl delete secret aws-secrets || true
 
 echo "Storing New Secret."
-kubectl create secret generic aws-secrets-old \
+kubectl create secret generic aws-secrets \
     --from-literal=aws-access-key-id=${AWS_ACCESS_KEY_ID} \
     --from-literal=aws-secret-access-key=${AWS_SECRET_ACCESS_KEY}
 echo
