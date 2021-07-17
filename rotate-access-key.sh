@@ -61,6 +61,9 @@ echo
 echo
 
 
+# not sure why I can't deactivate the old key
+# I suspect the new key is not ready.
+sleep 5
 echo "Disabling old access key"
 aws iam update-access-key --access-key-id $OLD_AWS_ACCESS_KEY_ID --status Inactive
 
