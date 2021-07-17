@@ -17,7 +17,7 @@ COPY --from=0 /download/kubectl /usr/local/bin/kubectl
 WORKDIR /tmp/download
 COPY --from=0 /download/aws /tmp/download/aws
 
-RUN adduser --system user && ./aws/install
+RUN adduser --system user && apt-get update && apt-get install -y jq && ./aws/install
 USER user
 WORKDIR /home/user
 ENV PATH /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/user/.local/bin
